@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+ </head>
+<body>
+<script>
+  'use strict';
+  /*
+  * ЗАДАНИЕ 4
+  * Реализовать основные 4 арифметические операции (+, -, /, *) в виде функций с двумя
+  * параметрами. Т.е. например, функция для сложения должна принимать два числа,
+  * складывать их и возвращать результат.
+  * Обязательно использовать оператор return.
+  */
+  function getSum(a,b) {
+      a = Number(a);
+      b = Number(b);
+      return a + b;
+  }
+  function getDiff(a,b) {
+      a = Number(a);
+      b = Number(b);
+      return a - b;
+  }
+  function getQuot(a,b) {
+      a = Number(a);
+      b = Number(b);
+      return a / b;
+  }
+  function getQuot(a,b) {
+      a = Number(a);
+      b = Number(b);
+      return a / b;
+  }
+  function getMult(a,b) {
+      a = Number(a);
+      b = Number(b);
+      return a * b;
+  }
+
+  /*
+  * ЗАДАНИЕ 5
+  * Реализовать функцию с тремя параметрами: function mathOperation(arg1, arg2, operation),
+  * где arg1, arg2 – значения аргументов, operation – строка с названием операции.
+  * В зависимости от переданного значения операции (использовать switch)
+  * выполнить одну из арифметических операций
+  * (использовать функции из задания 4) и вернуть полученное значение.
+  */
+
+  function mathOperation(arg1, arg2, operation) {
+      operation = operation.toLowerCase();
+       switch (operation) {
+           case 'сложение':
+               return `Сумма ${arg1} и ${arg2}: ${getSum(arg1,arg2)}`;
+           case 'вычитание':
+               return `Разность ${arg1} и ${arg2}: ${getDiff(arg1,arg2)}`;
+           case 'умножение':
+               return `Произведение ${arg1} и ${arg2}: ${getMult(arg1,arg2)}`;
+           case 'деление':
+               return `Частное ${arg1} и ${arg2}: ${getQuot(arg1,arg2)}`;
+           default:
+               return `Такой операции не существует [${operation}]`;
+
+       }
+  }
+
+  console.log(mathOperation(5, 3, "СлОженИе"));
+  console.log(mathOperation(5, 3, "умножение"));
+  console.log(mathOperation(5, 3, "Вычитание"));
+  console.log(mathOperation(5, 3, "Деление"));
+  console.log(mathOperation(5, 3, "Сумма"));
+
+
+
+
+
+</script>
+</body>
+</html>
