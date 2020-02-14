@@ -4,14 +4,14 @@ let mover = {
      * @returns {int} Возвращаем направлеине, введенное пользователем.
      */
     getDirection() {
-        const availableDirections = [2, 4, 6, 8];
+        const availableDirections = [1, 2, 3, 4, 6, 7, 8, 9];
         while (true) {
-            let direction = parseInt(prompt('Введите число (2, 4, 6 или 8), куда вы хотите переместиться, "Отмена" для выхода.'));
+            let direction = parseInt(prompt('Введите число (1, 2, 3, 4, 6, 7, 8, 9), куда вы хотите переместиться, "Отмена" для выхода.'));
             if (isNaN(direction)) {
                 return null;
             }
             if (!availableDirections.includes(direction)) {
-                alert('Для перемещения необходимо ввести одно из чисел 2, 4, 6 или 8.');
+                alert('Для перемещения необходимо ввести одно из чисел 1, 2, 3, 4, 6, 7, 8, 9.');
                 continue;
             }
             return direction;
@@ -30,20 +30,32 @@ let mover = {
             y: player.y
         };
         switch (direction) {
+            case 1:
+                nextPosition.x--;
             case 2:
                 nextPosition.y++;
                 break;
+            case 7:
+                nextPosition.y--;
             case 4:
                 nextPosition.x--;
                 break;
+            case 3:
+                nextPosition.y++;
             case 6:
                 nextPosition.x++;
                 break;
+            case 9:
+                nextPosition.x++;
             case 8:
                 nextPosition.y--;
                 break;
         }
+        if (nextPosition.x < 0 || nextPosition.x >= config.colsCount ||
+            nextPosition.y < 0 || nextPosition.y >= config.rowsCount) {
+            nextPosition.x = player.x;
+            nextPosition.y = player.y;
+            }
         return nextPosition;
-
     }
 }
