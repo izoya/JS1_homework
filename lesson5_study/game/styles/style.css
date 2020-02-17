@@ -1,0 +1,18 @@
+html {
+    background: #cfcfcf;
+}
+
+table {
+    border-collapse: collapse;
+    background: rgb(59, 192, 92);
+}
+
+td {
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgb(29, 139, 53);
+}
+
+.user {
+    background: rgb(255, 238, 0);
+}
