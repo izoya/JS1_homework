@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+        background: #eee;
+}
+
+section {
+        display: flex;
+        flex-wrap: wrap;
+margin: 30px;
+        opacity: .9;
+        width: 500px;
+        height: 500px;
+        background-image: url(https://cdn.pixabay.com/photo/2017/04/03/17/23/frosted-glass-2198953_960_720.jpg);
+        background-size: cover;
+        box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+
+}
+div {
+        min-width: 10%;
+        min-height: 10%;
+}
+
+.white {
+        background: #fff;
+        border: 1px dotted gray;
+        opacity: .8;
+
+}
+
+.black {
+        background: #000;
+        
+
+}
+.legend {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+}
