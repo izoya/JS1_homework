@@ -1,0 +1,15 @@
+.base {
+    height: 600px;
+}
+.player {
+    width: 600px;
+    height: 600px;
+}
+
+video {
+    height: 100%;
+}
+
+.timing {
+    width: 100%;
+}
