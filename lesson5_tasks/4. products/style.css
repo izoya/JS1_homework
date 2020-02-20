@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+section {
+    display: flex;
+}
+button {
+    padding: 12px;
+    margin: 12px;
+    justify-self: flex-end;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: space-between; 
+    justify-content: space-between;
+    width: 250px;
+    margin: 10px;
+    border: 1px solid yellowgreen;
+}
+
+img {
+    padding: 24px 12px;
+    object-fit: contain;
+    max-height: 280px;
+    
+    
+}
+
+.product__name {
+    font-family: sans-serif;
+    font-size: 20px;
+    padding: 12px;
+    height: 50px;
+}
+
+.desc {
+    font-family: sans-serif;
+    font-size: 15px;
+    padding: 12px;
+}
