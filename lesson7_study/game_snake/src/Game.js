@@ -50,6 +50,8 @@ class Game {
         }
         if (this.board.isHeadOnFood()) {
             this.snake.increaseBody();
+            this.status.increaseCount();
+            this.status.setCount();
             this.food.setNewFood();
         }
         this.board.clearBoard();
@@ -75,7 +77,9 @@ class Game {
     }
 
     isGameLost() {
-        if (this.board.isNextStepToWall(this.snake.body[0])) {
+        //if (this.board.isNextStepToWall(this.snake.body[0])) {
+
+        if (this.board.isNextStepToBody(this.snake.body[0])) {
             clearInterval(this.tickId);
             this.setMessage('Вы проиграли');
             return true;
@@ -95,4 +99,6 @@ class Game {
     setMessage(text) {
         this.messageEl.innerText = text;
     }
+
+
 }

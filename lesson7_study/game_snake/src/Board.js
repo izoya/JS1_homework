@@ -1,6 +1,6 @@
 class Board {
     constructor() {
-    this.boardEl = document.getElementById('game');
+        this.boardEl = document.getElementById('game');
     }
 
     /**
@@ -58,9 +58,22 @@ class Board {
         throw new Error('Объект змейки нулевой длины или не существует.');
     }
 
+    /* Метод не нужен, если нет стен
     isNextStepToWall(nextCellCoords) {
         let nextCell = this.getCellEl(nextCellCoords.x, nextCellCoords.y);
         return nextCell === null;
+    }
+    */
+
+    isNextStepToBody(nextCellCoords) {
+        if (this.snake.body.length > 1) {
+            for (let i = 1; i < this.snake.body.length; i++) {
+                if (this.snake.body[i].x === nextCellCoords.x && this.snake.body[i].y === nextCellCoords.y) {
+                    return true;
+                    break;
+                }
+            }
+        }
     }
 
     /**

@@ -1,5 +1,6 @@
 body {
     background: #2e353d;
+    font-family: sans-serif;
 }
 
 button {
@@ -11,6 +12,7 @@ button {
     border: none;
     outline: none;
     cursor: pointer;
+    height: 45px;
 
 }
 
@@ -48,4 +50,15 @@ td {
 #message {
     color: orange;
     font-size: 24px;
+}
+
+#count {
+    color: #2e353d;
+    background: burlywood;
+    padding: 12px;
+    width: 110px;
+    display: inline-block;
+    box-sizing: border-box;
+    height: 45px;
+    margin: 10px;
 }

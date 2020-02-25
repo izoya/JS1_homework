@@ -3,6 +3,8 @@
 class Status {
     constructor() {
         this.setPaused();
+        this.count = 1;
+        this.countEl = document.querySelector('#count b');
     }
 
     setPlaying() {
@@ -19,5 +21,13 @@ class Status {
 
     isPaused() {
         return this.condition === 'paused';
+    }
+
+    increaseCount() {
+        return this.count++;
+    }
+
+    setCount() {
+        this.countEl.innerText = this.count;
     }
 }

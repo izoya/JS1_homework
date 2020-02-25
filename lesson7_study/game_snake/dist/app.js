@@ -1,6 +1,6 @@
 class Board {
     constructor() {
-    this.boardEl = document.getElementById('game');
+        this.boardEl = document.getElementById('game');
     }
 
     /**
@@ -58,9 +58,22 @@ class Board {
         throw new Error('Объект змейки нулевой длины или не существует.');
     }
 
+    /* Метод не нужен, если нет стен
     isNextStepToWall(nextCellCoords) {
         let nextCell = this.getCellEl(nextCellCoords.x, nextCellCoords.y);
         return nextCell === null;
+    }
+    */
+
+    isNextStepToBody(nextCellCoords) {
+        if (this.snake.body.length > 1) {
+            for (let i = 1; i < this.snake.body.length; i++) {
+                if (this.snake.body[i].x === nextCellCoords.x && this.snake.body[i].y === nextCellCoords.y) {
+                    return true;
+                    break;
+                }
+            }
+        }
     }
 
     /**
@@ -165,6 +178,8 @@ class Game {
         }
         if (this.board.isHeadOnFood()) {
             this.snake.increaseBody();
+            this.status.increaseCount();
+            this.status.setCount();
             this.food.setNewFood();
         }
         this.board.clearBoard();
@@ -190,7 +205,9 @@ class Game {
     }
 
     isGameLost() {
-        if (this.board.isNextStepToWall(this.snake.body[0])) {
+        //if (this.board.isNextStepToWall(this.snake.body[0])) {
+
+        if (this.board.isNextStepToBody(this.snake.body[0])) {
             clearInterval(this.tickId);
             this.setMessage('Вы проиграли');
             return true;
@@ -210,6 +227,8 @@ class Game {
     setMessage(text) {
         this.messageEl.innerText = text;
     }
+
+
 }
 window.addEventListener('load', () => {
     const settings = new Settings();
@@ -220,10 +239,11 @@ window.addEventListener('load', () => {
     const game = new Game();
     const menu = new Menu();
 
-    settings.init({speed: 7, winLength: 10});
+    settings.init({speed: 3, winLength: 10});
     board.init(settings, snake);
     food.init(settings, snake, board);
     game.init(settings, snake, board, food, menu, status);
+    snake.init(settings);
 
     board.renderBoard();
     board.renderSnake();
@@ -295,6 +315,10 @@ class Snake {
         this.direction = 'down';
     }
 
+    init(settings) {
+        this.settings = settings;
+    }
+
     changeDirection(newDirection) {
         if (!this.possibleDirections.includes(newDirection)) {
             throw new Error('Передано неверное направление (' + newDirection + ').');
@@ -341,6 +365,11 @@ class Snake {
                 newHeadCoords.x++;
                 break;
         }
+        if (newHeadCoords.x < 1) newHeadCoords.x = this.settings.colsCount;
+        if (newHeadCoords.y < 1) newHeadCoords.y = this.settings.rowsCount;
+        if (newHeadCoords.x > this.settings.colsCount) newHeadCoords.x = 1;
+        if (newHeadCoords.y > this.settings.rowsCount) newHeadCoords.y = 1;
+
         this.body.unshift(newHeadCoords);
         this.body.pop();
     }
@@ -360,6 +389,8 @@ class Snake {
 class Status {
     constructor() {
         this.setPaused();
+        this.count = 1;
+        this.countEl = document.querySelector('#count b');
     }
 
     setPlaying() {
@@ -376,6 +407,14 @@ class Status {
 
     isPaused() {
         return this.condition === 'paused';
+    }
+
+    increaseCount() {
+        return this.count++;
+    }
+
+    setCount() {
+        this.countEl.innerText = this.count;
     }
 }
 //# sourceMappingURL=maps/app.js.map
