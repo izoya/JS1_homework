@@ -11,6 +11,10 @@ class Snake {
         this.direction = 'down';
     }
 
+    init(settings) {
+        this.settings = settings;
+    }
+
     changeDirection(newDirection) {
         if (!this.possibleDirections.includes(newDirection)) {
             throw new Error('Передано неверное направление (' + newDirection + ').');
@@ -57,6 +61,11 @@ class Snake {
                 newHeadCoords.x++;
                 break;
         }
+        if (newHeadCoords.x < 1) newHeadCoords.x = this.settings.colsCount;
+        if (newHeadCoords.y < 1) newHeadCoords.y = this.settings.rowsCount;
+        if (newHeadCoords.x > this.settings.colsCount) newHeadCoords.x = 1;
+        if (newHeadCoords.y > this.settings.rowsCount) newHeadCoords.y = 1;
+
         this.body.unshift(newHeadCoords);
         this.body.pop();
     }
